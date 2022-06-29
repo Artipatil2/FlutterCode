@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../bottom_navigetor/bottomNavigationBar.dart';
+import '../pages/profile.dart';
+
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
 
@@ -52,8 +55,8 @@ class _SignupState extends State<Signup> {
                     BoxDecoration(borderRadius: BorderRadius.circular(90)),
                 child: MaterialButton(
                   onPressed: () {
-                    // Navigator.push(context,
-                    //     MaterialPageRoute(builder: (context) => Profile()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => MyHomePage()));
                   },
                   child: Text(
                     "SIGN UP",

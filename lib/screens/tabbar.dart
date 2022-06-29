@@ -55,12 +55,7 @@ class _TabbarState extends State<Tabbar> with TickerProviderStateMixin {
                       child: TabBar(
                         indicator: BoxDecoration(
                             color: Color.fromARGB(255, 194, 193, 193),
-                            borderRadius: BorderRadius.only(
-                              topLeft: const Radius.circular(40.0),
-                              bottomLeft: const Radius.circular(40.0),
-                              topRight: const Radius.circular(40.0),
-                              bottomRight: const Radius.circular(40.0),
-                            )),
+                            borderRadius: BorderRadius.circular(40)),
                         controller: tabController,
                         tabs: [
                           Tab(
