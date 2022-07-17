@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:online_furniture_store/notification/notification.dart';
 import 'package:online_furniture_store/pages/settings.dart';
-
-import '../bottom_navigetor/bottomNavigationBar.dart';
-import 'my_basket.dart';
+import '../payment/payment.dart';
+import '../verification/otp.dart';
+import 'messages.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -70,7 +71,10 @@ class _ProfileState extends State<Profile> {
                 Padding(
                   padding: const EdgeInsets.only(right: 10),
                   child: TextButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Messages()));
+                    },
                     icon: Icon(
                       Icons.mail,
                       size: 30.0,
@@ -91,7 +95,12 @@ class _ProfileState extends State<Profile> {
                   endIndent: 10,
                 ),
                 TextButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => notification()));
+                  },
                   icon: Icon(
                     Icons.notifications,
                     size: 30.0,
@@ -111,16 +120,19 @@ class _ProfileState extends State<Profile> {
                   endIndent: 10,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 38),
+                  padding: const EdgeInsets.only(left: 60),
                   child: TextButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Payment()));
+                    },
                     icon: Icon(
                       Icons.account_balance,
                       size: 30.0,
                       color: Colors.grey,
                     ),
                     label: Text(
-                      'Account Details',
+                      'Payment Methods',
                       textAlign: TextAlign.justify,
                       style: TextStyle(fontSize: 20, color: Colors.black),
                     ),
@@ -134,12 +146,12 @@ class _ProfileState extends State<Profile> {
                   endIndent: 10,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 28),
+                  padding: const EdgeInsets.only(left: 0),
                   child: TextButton.icon(
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => MyBasket()),
+                        MaterialPageRoute(builder: (context) => Otp()),
                       );
                     },
                     icon: Icon(
@@ -148,7 +160,7 @@ class _ProfileState extends State<Profile> {
                       color: Colors.grey,
                     ),
                     label: Text(
-                      'My Purchases',
+                      'Verification',
                       textAlign: TextAlign.justify,
                       style: TextStyle(fontSize: 20, color: Colors.black),
                     ),

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+//import 'package:online_furniture_store/reusable_widgets/reusable_widget.dart';
 import 'package:online_furniture_store/tabbar_pages/signin_page.dart';
 import 'package:online_furniture_store/tabbar_pages/signup_page.dart';
+
+import '../reusable_widgets/reusable_widget.dart';
 
 class Tabbar extends StatefulWidget {
   const Tabbar({Key? key}) : super(key: key);
@@ -29,13 +32,8 @@ class _TabbarState extends State<Tabbar> with TickerProviderStateMixin {
     return DefaultTabController(
         length: 2,
         child: Scaffold(
-          appBar: AppBar(
-            flexibleSpace: Container(
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [
-              Color.fromARGB(255, 214, 165, 29),
-              Color.fromARGB(255, 184, 73, 17)
-            ], begin: Alignment.topCenter, end: Alignment.topRight))),
+          appBar: CustomAppBar(
+            title: '',
           ),
           body: SingleChildScrollView(
             child: Padding(
@@ -46,7 +44,7 @@ class _TabbarState extends State<Tabbar> with TickerProviderStateMixin {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Container(
-                      height: 60,
+                      height: 70,
                       width: 250,
                       decoration: new BoxDecoration(
                           color: Colors.white,

@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
+// import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.dart';
 
 import 'constant.dart';
 
-class ReviewUI extends StatelessWidget {
+class ReviewUI extends StatefulWidget {
   final String image, name, comment;
-  final double rating;
+  double rating;
   final Function onTap, onPressed;
   final bool isLess;
-  const ReviewUI({
+  ReviewUI({
     required Key key,
     required this.image,
     required this.name,
@@ -20,6 +21,11 @@ class ReviewUI extends StatelessWidget {
     required this.onPressed,
   }) : super(key: key);
 
+  @override
+  State<ReviewUI> createState() => _ReviewUIState();
+}
+
+class _ReviewUIState extends State<ReviewUI> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -43,7 +49,7 @@ class ReviewUI extends StatelessWidget {
                   margin: EdgeInsets.only(right: 16.0),
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage(image),
+                      image: AssetImage(widget.image),
                       fit: BoxFit.cover,
                     ),
                     borderRadius: BorderRadius.circular(40.0),
@@ -51,7 +57,7 @@ class ReviewUI extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    name,
+                    widget.name,
                     style: TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.bold,
@@ -64,12 +70,17 @@ class ReviewUI extends StatelessWidget {
             Row(
               children: [
                 SmoothStarRating(
-                  starCount: 5,
-                  rating: rating,
-                  size: 28.0,
-                  color: Colors.orange,
-                  borderColor: Colors.orange,
-                ),
+                    allowHalfRating: false,
+                    onRatingChanged: (v) {
+                      widget.rating = v;
+                      setState(() {});
+                    },
+                    starCount: 5,
+                    rating: widget.rating,
+                    size: 40.0,
+                    color: Colors.orange,
+                    borderColor: Colors.orange,
+                    spacing: 0.0),
                 SizedBox(width: kFixPadding),
               ],
             ),
@@ -86,16 +97,16 @@ class ReviewUI extends StatelessWidget {
             SizedBox(height: 5.0),
             Center(
               child: GestureDetector(
-                onTap: onTap(),
-                child: isLess
-                    ? Text(comment,
+                onTap: widget.onTap(),
+                child: widget.isLess
+                    ? Text(widget.comment,
                         style: TextStyle(
                           fontSize: 18.0,
                           color: kLightColor,
                         ),
                         textAlign: TextAlign.start)
                     : Text(
-                        comment,
+                        widget.comment,
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(

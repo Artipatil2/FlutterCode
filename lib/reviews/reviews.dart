@@ -1,8 +1,8 @@
+import 'package:online_furniture_store/reusable_widgets/reusable_widget.dart';
+
 import 'constant.dart';
 import 'reviewUI.dart';
 import 'package:flutter/material.dart';
-
-import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class Reviews extends StatefulWidget {
   //const Reviews({required Key key}) : super(key: key);
@@ -18,17 +18,8 @@ class _ReviewsState extends State<Reviews> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Reviews',
-        ),
-        centerTitle: true,
-        flexibleSpace: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [
-          Color.fromARGB(255, 214, 165, 29),
-          Color.fromARGB(255, 184, 73, 17)
-        ], begin: Alignment.topCenter, end: Alignment.topRight))),
+      appBar: CustomAppBar(
+        title: 'Reviews',
       ),
       backgroundColor: kWhiteColor,
       body: ListView.builder(

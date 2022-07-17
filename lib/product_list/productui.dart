@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 //import 'constant.dart';
 
-class CartUI extends StatefulWidget {
+class ProductsUI extends StatefulWidget {
   final String image, name, oprice, price;
-  const CartUI({
+  const ProductsUI({
     required Key key,
     required this.image,
     required this.name,
@@ -13,10 +13,10 @@ class CartUI extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<CartUI> createState() => _CartUIState();
+  State<ProductsUI> createState() => _ProductsUIState();
 }
 
-class _CartUIState extends State<CartUI> {
+class _ProductsUIState extends State<ProductsUI> {
   @override
   int _itemCount = 0;
   Widget build(BuildContext context) {

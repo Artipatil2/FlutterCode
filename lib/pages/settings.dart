@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../reusable_widgets/reusable_widget.dart';
+
 class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        flexibleSpace: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [
-          Color.fromARGB(255, 214, 165, 29),
-          Color.fromARGB(255, 184, 73, 17)
-        ], begin: Alignment.topCenter, end: Alignment.topRight))),
+      appBar: CustomAppBar(
+        title: '',
       ),
       body: Center(child: Text('Settings')),
     );

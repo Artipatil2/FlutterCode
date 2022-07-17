@@ -1,29 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:online_furniture_store/my_cart/constant.dart';
-import 'package:online_furniture_store/my_cart/productmodel.dart';
+import 'package:online_furniture_store/product_list/productui.dart';
+import 'package:online_furniture_store/product_list/constant.dart';
 
-import 'cartui.dart';
 
-class Cart extends StatefulWidget {
-  const Cart({Key? key}) : super(key: key);
+import '../filters/filters.dart';
+import '../reusable_widgets/reusable_widget.dart';
+
+
+class Products extends StatefulWidget {
+  const Products({Key? key}) : super(key: key);
 
   @override
-  State<Cart> createState() => _CartState();
+  State<Products> createState() => _ProductsState();
 }
 
-class _CartState extends State<Cart> {
+class _ProductsState extends State<Products> {
   bool _searchBoolean = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        flexibleSpace: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [
-          Color.fromARGB(255, 214, 165, 29),
-          Color.fromARGB(255, 184, 73, 17)
-        ], begin: Alignment.topCenter, end: Alignment.topRight))),
-        actions: [
+      appBar: CustomAppBar(
+        title: '',
+        action: [
           IconButton(
             onPressed: () {
               // method to show the search bar
@@ -33,7 +31,17 @@ class _CartState extends State<Cart> {
                   delegate: CustomSearchDelegate());
             },
             icon: const Icon(Icons.search),
-          )
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Filters()));
+            },
+            icon: Icon(
+              Icons.filter_list_alt,
+              color: Colors.white,
+            ),
+          ),
         ],
       ),
       body: ListView.builder(
@@ -41,7 +49,7 @@ class _CartState extends State<Cart> {
         itemCount: productList.length,
         itemBuilder: (context, index) {
           return Card(
-            child: CartUI(
+            child: ProductsUI(
               image: productList[index].image,
               name: productList[index].name,
               oprice: productList[index].oprice,
@@ -56,9 +64,16 @@ class _CartState extends State<Cart> {
 }
 
 class CustomSearchDelegate extends SearchDelegate {
+// Demo list to show querying
+  List<String> searchTerms = [
+    "Sofa",
+    "Armchair",
+    "Bed",
+    "Chair",
+  ];
 
-  List<String> searchTerms = [];
-
+// first overwrite to
+// clear the search text
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
@@ -86,7 +101,11 @@ class CustomSearchDelegate extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     List<String> matchQuery = [];
-
+    for (var fruit in searchTerms) {
+      if (fruit.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(fruit);
+      }
+    }
     return ListView.builder(
       itemCount: matchQuery.length,
       itemBuilder: (context, index) {
@@ -98,11 +117,16 @@ class CustomSearchDelegate extends SearchDelegate {
     );
   }
 
-
+// last overwrite to show the
+// querying process at the runtime
   @override
   Widget buildSuggestions(BuildContext context) {
     List<String> matchQuery = [];
-
+    for (var fruit in searchTerms) {
+      if (fruit.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(fruit);
+      }
+    }
     return ListView.builder(
       itemCount: matchQuery.length,
       itemBuilder: (context, index) {

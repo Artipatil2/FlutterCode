@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:online_furniture_store/screens/home.dart';
 
 //import '../pages/product_list.dart';
-import '../my_cart/cart.dart';
-import '../pages/my_basket.dart';
+import '../my_basket/basket.dart';
+
+
 import '../pages/profile.dart';
-import '../pages/settings.dart';
+
+import '../product_list/product.dart';
 import '../reviews/reviews.dart';
+import '../credit_card/account_details.dart';
+import '../verification/otp.dart';
 
 class MyHomePage extends StatefulWidget {
   // late final String title;
@@ -33,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage> {
           label: '',
           backgroundColor: Colors.white),
       BottomNavigationBarItem(
-          icon: Icon(Icons.settings, color: Colors.grey),
+          icon: Icon(Icons.reviews, color: Colors.grey),
           label: '',
           backgroundColor: Colors.white),
       BottomNavigationBarItem(
@@ -55,10 +58,10 @@ class _MyHomePageState extends State<MyHomePage> {
         pageChanged(index);
       },
       children: <Widget>[
-        Cart(),
-        MyBasket(),
+        Products(),
+        Basket(),
+        Account_Details(),
         Reviews(),
-        Settings(),
         Profile(),
       ],
     );
