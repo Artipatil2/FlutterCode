@@ -1,23 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:online_furniture_store/controller/cart_controller.dart';
+import '../models/product_model.dart';
 
-//import 'constant.dart';
+class CartProducts extends StatelessWidget {
+  final CartContoller contoller = Get.find();
 
-class BasketUI extends StatefulWidget {
-  final String image, name, price;
-  const BasketUI({
-    required Key key,
-    required this.image,
-    required this.name,
-    required this.price,
-  }) : super(key: key);
+  CartProducts({Key? key}) : super(key: key);
 
   @override
-  State<BasketUI> createState() => _BasketUIState();
+  Widget build(BuildContext context) {
+    return Obx(
+      () => SizedBox(
+        height: 520,
+        child: ListView.builder(
+          itemCount: contoller.products.length,
+          itemBuilder: (BuildContext context, int index) {
+            return CartProductCard(
+              contoller: contoller,
+              product: contoller.products.keys.toList()[index],
+              quantity: contoller.products.values.toList()[index],
+              index: index,
+            );
+          },
+        ),
+      ),
+    );
+  }
 }
 
-class _BasketUIState extends State<BasketUI> {
+//import 'constant.dart';
+class CartProductCard extends StatelessWidget {
+  final CartContoller contoller;
+  final Product product;
+  final int quantity;
+  final int index;
+
+  const CartProductCard(
+      {Key? key,
+      required this.contoller,
+      required this.product,
+      required this.quantity,
+      required this.index})
+      : super(key: key);
+
+  // final MyContoller c = Get.put(MyContoller());
   @override
-  int _itemCount = 0;
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -35,7 +63,7 @@ class _BasketUIState extends State<BasketUI> {
                   width: 100,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage(widget.image),
+                      image: AssetImage(product.image),
                     ),
                     border: Border.all(color: Colors.grey.shade300, width: 2.0),
                   ),
@@ -54,7 +82,7 @@ class _BasketUIState extends State<BasketUI> {
                         child: Padding(
                           padding: const EdgeInsets.only(left: 20),
                           child: Text(
-                            widget.name,
+                            product.name,
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 18,
@@ -67,9 +95,9 @@ class _BasketUIState extends State<BasketUI> {
                       ),
                       Container(
                         child: Padding(
-                          padding: const EdgeInsets.only(left: 20),
+                          padding: const EdgeInsets.only(left: 5),
                           child: Text(
-                            widget.price,
+                            '  \$${product.price}',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 25,
@@ -80,12 +108,11 @@ class _BasketUIState extends State<BasketUI> {
                     ],
                   ),
                 ),
-
                 SizedBox(
-                  width: 38,
+                  width: 10,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(right: 1.0),
+                  padding: const EdgeInsets.only(right: 8.0),
                   child: Expanded(
                     child: Container(
                       child: FittedBox(
@@ -94,23 +121,30 @@ class _BasketUIState extends State<BasketUI> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             IconButton(
-                              icon: new Icon(Icons.remove),
-                              onPressed: () => setState(() =>
-                                  _itemCount != 0 ? _itemCount-- : _itemCount),
+                                icon: new Icon(Icons.remove),
+                                onPressed: () {
+                                  contoller.removeProduct(product);
+                                }),
+                            SizedBox(
+                              width: 10,
                             ),
                             Container(
-                              height: 20,
-                              width: 20,
-                              decoration: BoxDecoration(
-                                  border: Border.all(
-                                color: Colors.black,
-                                // width: 5,
-                              )),
-                              child: Center(child: Text(_itemCount.toString())),
+                                height: 20,
+                                width: 20,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                  color: Colors.black,
+                                  // width: 5,
+                                )),
+                                child: Center(child: Text('$quantity'))),
+                            SizedBox(
+                              width: 10,
                             ),
                             IconButton(
                               icon: new Icon(Icons.add),
-                              onPressed: () => setState(() => _itemCount++),
+                              onPressed: () {
+                                contoller.addProduct(product);
+                              },
                             ),
                           ],
                         ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:online_furniture_store/notification/notification.dart';
 import 'package:online_furniture_store/pages/settings.dart';
 import '../payment/payment.dart';
+import '../reusable_widgets/reusable_widget.dart';
 import '../verification/otp.dart';
 import 'messages.dart';
 
@@ -16,13 +17,8 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        flexibleSpace: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [
-          Color.fromARGB(255, 214, 165, 29),
-          Color.fromARGB(255, 184, 73, 17)
-        ], begin: Alignment.topCenter, end: Alignment.topRight))),
+      appBar: CustomAppBar(
+        title: '',
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),

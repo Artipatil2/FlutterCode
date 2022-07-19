@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-
-//import '../pages/product_list.dart';
-import '../my_basket/basket.dart';
-
-
+import 'package:online_furniture_store/cart/cart_screen.dart';
+import '../catalog/catalog_screen.dart';
 import '../pages/profile.dart';
-
-import '../product_list/product.dart';
 import '../reviews/reviews.dart';
 import '../credit_card/account_details.dart';
-import '../verification/otp.dart';
+
 
 class MyHomePage extends StatefulWidget {
   // late final String title;
@@ -58,8 +53,8 @@ class _MyHomePageState extends State<MyHomePage> {
         pageChanged(index);
       },
       children: <Widget>[
-        Products(),
-        Basket(),
+        CatalogScreen(),
+        CartScreen(),
         Account_Details(),
         Reviews(),
         Profile(),

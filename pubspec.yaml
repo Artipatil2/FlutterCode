@@ -37,7 +37,8 @@ dependencies:
   flutter_credit_card: ^3.0.1
   favorite_button: ^0.0.4
   flutter_svg: ^1.1.1+1
-  
+  get: ^4.6.5
+ 
  
 
 

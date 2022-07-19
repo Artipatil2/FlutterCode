@@ -85,36 +85,6 @@ class _OtpState extends State<Otp> {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  // Padding(
-                  //   padding: const EdgeInsets.only(
-                  //       left: 50.0, right: 50.0, top: 20.0),
-                  //   child: SizedBox(
-                  //     width: double.infinity,
-                  //     child: ElevatedButton(
-                  //       onPressed: () {},
-                  //       style: ButtonStyle(
-                  //         foregroundColor:
-                  //             MaterialStateProperty.all<Color>(Colors.white),
-                  //         backgroundColor: MaterialStateProperty.all<Color>(
-                  //             Colors.orange.shade900),
-                  //         shape:
-                  //             MaterialStateProperty.all<RoundedRectangleBorder>(
-                  //           RoundedRectangleBorder(
-                  //             borderRadius: BorderRadius.circular(100),
-                  //           ),
-                  //         ),
-                  //       ),
-                  //       child: Padding(
-                  //         padding: EdgeInsets.all(18.0),
-                  //         child: Text(
-                  //           'Continue',
-                  //           style: TextStyle(
-                  //               fontSize: 18, fontWeight: FontWeight.bold),
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // )
                   UIButton(context, "Continue", () {}),
                 ],
               ),

@@ -1,21 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:online_furniture_store/product_list/productui.dart';
-import 'package:online_furniture_store/product_list/constant.dart';
-
-
+import 'package:get/get.dart';
+import 'package:online_furniture_store/catalog/catalog_products.dart';
+import '../cart/cart_screen.dart';
 import '../filters/filters.dart';
 import '../reusable_widgets/reusable_widget.dart';
 
+class CatalogScreen extends StatelessWidget {
+  const CatalogScreen({Key? key}) : super(key: key);
 
-class Products extends StatefulWidget {
-  const Products({Key? key}) : super(key: key);
-
-  @override
-  State<Products> createState() => _ProductsState();
-}
-
-class _ProductsState extends State<Products> {
-  bool _searchBoolean = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,23 +34,23 @@ class _ProductsState extends State<Products> {
               color: Colors.white,
             ),
           ),
+          IconButton(
+            onPressed: () {
+              Get.to(() => CartScreen());
+            },
+            icon: Icon(
+              Icons.shopping_cart_outlined,
+              color: Colors.white,
+            ),
+          ),
         ],
       ),
-      body: ListView.builder(
-        padding: EdgeInsets.only(bottom: 10.0, top: 8.0),
-        itemCount: productList.length,
-        itemBuilder: (context, index) {
-          return Card(
-            child: ProductsUI(
-              image: productList[index].image,
-              name: productList[index].name,
-              oprice: productList[index].oprice,
-              price: productList[index].price,
-              key: Key(toString()),
-            ),
-          );
-        },
-      ),
+      body: SafeArea(
+          child: Column(
+        children: [
+          CatalogProducts(),
+        ],
+      )),
     );
   }
 }
